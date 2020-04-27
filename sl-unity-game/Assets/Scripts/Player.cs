@@ -3,18 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent (typeof (PlayerController))]
+[RequireComponent (typeof (GunController))]
 public class Player : MonoBehaviour
 {
     // Variables
     public float moveSpeed;
-    
-    PlayerController controller;
+
     Camera viewCamera;
+    PlayerController controller;
+    GunController gunController;
 
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<PlayerController>();
+        gunController = GetComponent<GunController>();
         viewCamera = Camera.main;
     }
 
@@ -26,15 +29,20 @@ public class Player : MonoBehaviour
         Vector3 moveVelocity = moveInput.normalized * moveSpeed;
         controller.Move(moveVelocity);
 
-        // Point towards cursor
+        // Look towards cursor
         Ray ray = viewCamera.ScreenPointToRay(Input.mousePosition);
         Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
         float rayDistance;
-
         if (groundPlane.Raycast(ray, out rayDistance))
         {
             Vector3 point = ray.GetPoint(rayDistance);
             controller.LookAt(point);
+        }
+
+        // Fire weapon
+        if (Input.GetMouseButton(0))
+        {
+            gunController.Shoot();
         }
     }
 }
