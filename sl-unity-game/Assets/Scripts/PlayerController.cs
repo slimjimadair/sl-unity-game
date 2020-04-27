@@ -15,13 +15,13 @@ public class PlayerController : MonoBehaviour
         myRigidBody = GetComponent<Rigidbody>();
     }
 
-    // Move function
+    // Move method
     public void Move(Vector3 _velocity)
     {
         velocity = _velocity;
     }
 
-    // LookAt function
+    // LookAt method
     public void LookAt(Vector3 lookPoint)
     {
         Vector3 heightCorrectedLookPoint = new Vector3(lookPoint.x, transform.position.y, lookPoint.z);

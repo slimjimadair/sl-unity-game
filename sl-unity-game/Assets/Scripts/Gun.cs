@@ -12,7 +12,7 @@ public class Gun : MonoBehaviour
 
     float nextShotTime = 0;
 
-    // Shoot function
+    // Shoot method
     public void Shoot()
     {
         if (Time.time > nextShotTime)

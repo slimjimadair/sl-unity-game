@@ -18,7 +18,7 @@ public class GunController : MonoBehaviour
         }
     }
 
-    // EquipGun function
+    // EquipGun method
     public void EquipGun(Gun gunToEquip)
     {
         if (equippedGun != null)
@@ -29,7 +29,7 @@ public class GunController : MonoBehaviour
         equippedGun.transform.parent = weaponHold;
     }
 
-    // Shoot function
+    // Shoot method
     public void Shoot()
     {
         if (equippedGun != null)
