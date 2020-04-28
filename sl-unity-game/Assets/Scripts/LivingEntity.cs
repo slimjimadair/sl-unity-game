@@ -9,6 +9,9 @@ public class LivingEntity : MonoBehaviour, IDamageable
     protected float health;
     protected bool dead;
 
+    // OnDeath event
+    public event System.Action OnDeath;
+
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -29,6 +32,10 @@ public class LivingEntity : MonoBehaviour, IDamageable
     protected void Die()
     {
         dead = true;
+        if (OnDeath != null)
+        {
+            OnDeath();
+        }
         GameObject.Destroy(gameObject);
     }
 }
