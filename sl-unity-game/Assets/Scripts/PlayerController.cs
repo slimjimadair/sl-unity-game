@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // FixedUpdate calls independent of frame rate to avoid collision issues
-    public void FixedUpdate()
+    void FixedUpdate()
     {
         myRigidBody.MovePosition(myRigidBody.position + velocity * Time.fixedDeltaTime);
     }

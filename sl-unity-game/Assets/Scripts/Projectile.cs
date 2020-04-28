@@ -6,6 +6,7 @@ public class Projectile : MonoBehaviour
 {
     // Variables
     float speed;
+    float damage = 1;
     public LayerMask collisionMask;
 
     // SetSpeed method
@@ -36,7 +37,11 @@ public class Projectile : MonoBehaviour
     // OnHitObject method
     void OnHitObject(RaycastHit hit)
     {
-        print(hit.collider.gameObject.name);
+        IDamageable damageableObject = hit.collider.GetComponent<IDamageable>();
+        if (damageableObject != null)
+        {
+            damageableObject.TakeHit(damage, hit);
+        }
         GameObject.Destroy(gameObject);
     }
 }
